@@ -1,6 +1,6 @@
 {
   "name": "kdjn-worker-manager",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Workerを扱うライブラリをテスト的に作成",
   "main": "WorkerManager.js",
   "bin": {
@@ -15,8 +15,5 @@
   },
   "keywords": [],
   "author": "毛 <j.kudo@aobiji.ac.jp> (https://twitter.com/yasurageruheya)",
-  "license": "MIT",
-  "devDependencies": {
-    "jest": "^29.7.0"
-  }
+  "license": "MIT"
 }

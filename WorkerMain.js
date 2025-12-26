@@ -102,7 +102,6 @@ class WorkerMain extends _WorkerBase
 					else objectMessage(message, this);
 					break;
 			}
-			//todo: WorkerSub からのエラーを受け取れるようにしたい！！！！
 			if(message !== "received")
 			{
 				worker.postMessage("received");

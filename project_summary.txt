@@ -1,0 +1,210 @@
+--- Project Directory Tree ---
+- .git
+  - COMMIT_EDITMSG
+  - config
+  - description
+  - HEAD
+  - hooks
+    - applypatch-msg.sample
+    - commit-msg.sample
+    - fsmonitor-watchman.sample
+    - post-update.sample
+    - pre-applypatch.sample
+    - pre-commit.sample
+    - pre-merge-commit.sample
+    - pre-push.sample
+    - pre-rebase.sample
+    - pre-receive.sample
+    - prepare-commit-msg.sample
+    - push-to-checkout.sample
+    - sendemail-validate.sample
+    - update.sample
+  - index
+  - info
+    - exclude
+  - logs
+    - HEAD
+    - refs
+      - heads
+        - main
+      - remotes
+        - origin
+          - HEAD
+          - main
+  - objects
+    - 47
+      - 190f5b2dfb20d15a91e8f4458290e06dbd4994
+    - 60
+      - b97b1612b6e0ff72430d0711136d9d52b1bdcb
+    - 7d
+      - 354f8b535a58f726150060216c813d778af5d5
+    - 87
+      - 1dd8bdd42c44941a29405cd2e8952de0eeadee
+    - 8f
+      - 43bc7e0d16ad840341b35c22d731c14193e39c
+    - 96
+      - e84cf408e580c5152f57fcb0641288205a8cc0
+    - a4
+      - f9157f2b780ea470da5bfc0a5f12debcda166f
+    - f0
+      - 4d2bf643fbc96464e65abeb62f6a3577ffcbc2
+    - info
+    - pack
+      - pack-5ae3ce5a4c8ce864be392228447462900751706e.idx
+      - pack-5ae3ce5a4c8ce864be392228447462900751706e.pack
+      - pack-5ae3ce5a4c8ce864be392228447462900751706e.rev
+  - packed-refs
+  - refs
+    - heads
+      - main
+    - remotes
+      - origin
+        - HEAD
+        - main
+    - tags
+  - tgitchangelist
+- .gitignore
+- .idea
+  - .gitignore
+  - .name
+  - jsLibraryMappings.xml
+  - kdjn-worker-manager.iml
+  - modules.xml
+  - vcs.xml
+  - workspace.xml
+- generate_project_summary.js
+- isTransferable.js
+- MainMessenger.js
+- Messenger.js
+- package-lock.json
+- package.json
+- WorkerMain.js
+- WorkerManager.js
+- WorkerSub.js
+- _WorkerBase.js
+
+--- package.json ---
+{
+  "name": "kdjn-worker-manager",
+  "version": "0.1.15",
+  "description": "Workerを扱うライブラリをテスト的に作成",
+  "main": "WorkerManager.js",
+  "bin": {
+    "kdjn-worker-mamager": "WorkerManager.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yasurageruheya/worker-manager.git"
+  },
+  "keywords": [],
+  "author": "毛 <j.kudo@aobiji.ac.jp> (https://twitter.com/yasurageruheya)",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
+
+
+--- Main JS/TS Files (First 10 lines) ---
+
+File: generate_project_summary.js
+const fs = require('fs');
+const path = require('path');
+
+// Output file
+const outputFile = 'project_summary.txt';
+let output = '';
+
+// Function to recursively generate tree view
+function generateTree(dir, indent = '') {
+    const items = fs.readdirSync(dir);
+
+File: isTransferable.js
+const {MessagePort} = require("worker_threads");
+/**
+ *
+ * @param {any} data
+ * @return {boolean}
+ */
+module.exports = (data)=>
+{
+	return (
+		data instanceof ArrayBuffer ||
+
+File: MainMessenger.js
+const Messenger = require("./Messenger");
+
+class MainMessenger extends Messenger
+{
+	/**
+	 *
+	 * @param {_WorkerBase} workerBase
+	 */
+	constructor(workerBase)
+	{
+
+File: Messenger.js
+class Messenger
+{
+	/**
+	 *
+	 * @param {_WorkerBase} workerBase
+	 */
+	constructor(workerBase)
+	{
+		/** @type {_WorkerBase} */
+		this.workerBase = workerBase;
+
+File: WorkerMain.js
+const {Worker} = require("worker_threads");
+
+/** @type {typeof WorkerManager} */
+const WorkerManager = require("./WorkerManager");
+const MainMessenger = require("./MainMessenger");
+const _WorkerBase = require("./_WorkerBase");
+
+const path = require("path");
+
+/**
+
+File: WorkerManager.js
+/** @type {WorkerMain[]} */
+const working = [];
+/** @type {WorkerMain[]} */
+const waiting = [];
+/** @type {Object.<number>} */
+const jsPathCache = {};
+/** @type {string[]} */
+const queue = [];
+
+const {EventEmitter} = require("events");
+
+File: WorkerSub.js
+const {parentPort, workerData} = require("worker_threads");
+const isTransferable = require("./isTransferable");
+const _WorkerBase = require("./_WorkerBase");
+const Messenger = require("./Messenger");
+
+const path = require("path");
+const rootNodeModules = path.join(process.cwd(), "node_modules");
+const customizedRequires = new Map();
+
+/** @type {boolean} */
+
+File: _WorkerBase.js
+const {EventEmitter} = require("events");
+
+class _WorkerBase extends EventEmitter
+{
+	constructor()
+	{
+		super();
+		/** @type {boolean} */
+		this.isSending = false;
+		/** @type {Array.<{data:any, transferable:boolean, callback:WorkerMessageCallback}>} */
+
+--- README.md ---
+README.md not found
